@@ -14,10 +14,16 @@ import {
   Swipeable,
 } from "react-native-gesture-handler";
 import TimeImage from "../../assets/mainIcon.png";
+import emptyImage from "../../assets/mainIcon.png";
 
 export const FocusHistory = ({ history, onDelete }) => {
   if (!history || !history.length)
-    return <Text style={styles.title}>Things we've focused on:</Text>;
+    return (
+      <View style={styles.emptyImageWrapper}>
+        <Image style={styles.emptyImage} source={emptyImage} />
+        <Text style={styles.title}>Empty</Text>
+      </View>
+    );
 
   const renderRightActions = (item) => (
     <View style={styles.actionsContainer}>
@@ -56,6 +62,17 @@ const styles = StyleSheet.create({
   container: {
     padding: spacing.md,
     flex: 1,
+  },
+
+  emptyImageWrapper: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 20,
+  },
+  emptyImage: {
+    width: 200,
+    height: 200,
   },
   item: {
     fontSize: fontSizes.md,
