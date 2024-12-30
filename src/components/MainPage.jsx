@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, SafeAreaView, Platform, StatusBar } from "react-native";
-import { colors } from "./src/utils/colors";
-import { Focus } from "./src/features/Focus";
-import { Timer } from "./src/features/Timer";
-import { FocusHistory } from "./src/features/FocusHistory";
+import { colors } from "../utils/colors";
+import { Focus } from "../features/Focus";
+import { Timer } from "../features/Timer";
+import { FocusHistory } from "../features/FocusHistory";
 
-export default function MainPage() {
+export const MainPage = () => {
   const [currentSubject, setCurrentSubject] = useState();
   const [history, setHistory] = useState([]);
   const handleDelete = (item) => {
@@ -31,7 +31,7 @@ export default function MainPage() {
       )}
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

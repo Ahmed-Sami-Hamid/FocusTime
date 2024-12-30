@@ -1,9 +1,15 @@
 import React, { useEffect, useRef } from "react";
-import { StyleSheet, Animated, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Animated,
+  TouchableOpacity,
+  View,
+  Text,
+} from "react-native";
 import Svg, { G, Circle } from "react-native-svg";
 import { AntDesign } from "@expo/vector-icons";
 
-const NextButton = ({ percentage, scrollT0 }) => {
+const NextButton = ({ percentage, scrollT0, isFinished }) => {
   const size = 100;
   const stockWidth = 2;
   const center = size / 2;
@@ -75,7 +81,11 @@ const NextButton = ({ percentage, scrollT0 }) => {
         activeOpacity={0.6}
         onPress={scrollT0}
       >
-        <AntDesign name="arrowright" size={32} color="#ffffff" />
+        {isFinished ? (
+          <AntDesign name="check" size={32} color="#ffffff" />
+        ) : (
+          <AntDesign name="arrowright" size={32} color="#ffffff" />
+        )}
       </TouchableOpacity>
     </View>
   );
@@ -89,11 +99,24 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  textDoen: {
+    color: "#ffffff",
+    fontSize: 16,
+    fontWeight: "bold",
+    width: 30,
+    height: 30,
+    textAlign: "center",
+  },
   button: {
     position: "absolute",
     backgroundColor: "#F83C8C",
     borderRadius: 100,
     padding: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonDone: {
+    position: "absolute",
     justifyContent: "center",
     alignItems: "center",
   },

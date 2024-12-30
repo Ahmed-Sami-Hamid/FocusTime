@@ -1,11 +1,20 @@
 import React, { useState, useRef } from "react";
-import { View, Text, StyleSheet, FlatList, Animated } from "react-native";
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Animated,
+  SafeAreaView,
+  Platform,
+  StatusBar,
+} from "react-native";
 import { onboardingData } from "../utils/onboarding";
 import NextButton from "./NextButton";
 import OnboardingItem from "./OnboardingItem";
 import Paginator from "./Paginator";
+import { colors } from "../utils/colors";
 
-const Onboarding = () => {
+const Onboarding = ({ navigation }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const slideRef = useRef(null);
@@ -21,12 +30,12 @@ const Onboarding = () => {
     if (currentIndex < onboardingData.length - 1) {
       slideRef.current.scrollToIndex({ index: currentIndex + 1 });
     } else {
-      slideRef.current.scrollToIndex({ index: 0 });
+      navigation.navigate("MainPage");
     }
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={{ flex: 3 }}>
         <FlatList
           data={onboardingData}
@@ -51,8 +60,9 @@ const Onboarding = () => {
       <NextButton
         scrollT0={scrollT0}
         percentage={(currentIndex + 1) * (100 / onboardingData.length)}
+        isFinished={currentIndex === onboardingData.length - 1}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -61,6 +71,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    padding: 20,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    backgroundColor: colors.darkBlue,
+    color: colors.white,
   },
 });
 export default Onboarding;

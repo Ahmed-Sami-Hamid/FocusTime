@@ -1,21 +1,21 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, Platform, StatusBar } from "react-native";
 import Onboarding from "./src/components/Onboarding";
-import { colors } from "./src/utils/colors";
+import { MainPage } from "./src/components/MainPage";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 export default function App() {
+  const Stack = createStackNavigator();
+
   return (
-    <SafeAreaView style={styles.container}>
-      <Onboarding />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Onboarding"
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name="Onboarding" component={Onboarding} />
+        <Stack.Screen name="MainPage" component={MainPage} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-    backgroundColor: colors.darkBlue,
-    color: colors.white,
-  },
-});
