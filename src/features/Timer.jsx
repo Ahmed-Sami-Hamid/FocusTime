@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+
 // import { ProgressBar } from "react-native-paper";
 import { useKeepAwake } from "expo-keep-awake";
 import { Countdown } from "../components/Countdown";

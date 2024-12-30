@@ -8,12 +8,15 @@ import { FocusHistory } from "./src/features/FocusHistory";
 export default function App() {
   const [currentSubject, setCurrentSubject] = useState();
   const [history, setHistory] = useState([]);
+  const handleDelete = (item) => {
+    setHistory((prevHistory) => prevHistory.filter((historyItem) => historyItem !== item));
+  };
   return (
     <SafeAreaView style={styles.container}>
       {!currentSubject ? (
         <>
           <Focus addSubject={setCurrentSubject} />
-          <FocusHistory history={history} />
+          <FocusHistory history={history} onDelete={handleDelete} />
         </>
       ) : (
         <Timer
