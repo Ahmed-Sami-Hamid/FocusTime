@@ -1,6 +1,6 @@
 export const colors = {
   white: "#fff",
-  darkBlue: "#1E1E1E",
+  darkBlue: "#181A20",
   progressBar: "#F83C8C",
   itemCard: "#7A6CF2",
   red: "#F83C8C",
