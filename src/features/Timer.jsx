@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, Vibration } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Vibration,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 // import { ProgressBar } from "react-native-paper";
 import { useKeepAwake } from "expo-keep-awake";
 import { Countdown } from "../components/Countdown";
@@ -7,6 +14,9 @@ import { RoundedButton } from "../components/RoundedButton";
 import { spacing } from "../utils/sizes";
 import { colors } from "../utils/colors";
 import { Timing } from "./Timing";
+import HomeIcon from "../../assets/homeicon.webp";
+import PlayImage from "../../assets/playimage.png";
+import StopImage from "../../assets/stopimage.png";
 
 const ONE_SECOND_IN_MS = 1000;
 
@@ -58,13 +68,17 @@ export const Timer = ({ focusSubject, clearSubject, onTimerEnd }) => {
       </View>
       <View style={styles.buttonWrapper}>
         {!isStarted ? (
-          <RoundedButton title="start" onPress={() => setIsStarted(true)} />
+          <TouchableOpacity onPress={() => setIsStarted(true)}>
+            <Image style={styles.imageIcon} source={PlayImage} />
+          </TouchableOpacity>
         ) : (
-          <RoundedButton title="pause" onPress={() => setIsStarted(false)} />
+          <TouchableOpacity onPress={() => setIsStarted(false)}>
+            <Image style={styles.imageIcon} source={StopImage} />
+          </TouchableOpacity>
         )}
       </View>
       <View style={styles.clearSubjectWrapper}>
-        <RoundedButton size={50} title="-" onPress={clearSubject} />
+        <RoundedButton size={50} iconTitle={HomeIcon} onPress={clearSubject} />
       </View>
     </View>
   );
@@ -103,5 +117,10 @@ const styles = StyleSheet.create({
   task: {
     color: colors.white,
     textAlign: "center",
+  },
+  imageIcon: {
+    width: 100,
+    height: 100,
+    resizeMode: "contain",
   },
 });

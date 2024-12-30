@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { TextInput } from "react-native-paper";
-import { RoundedButton } from "../components/RoundedButton";
 import { spacing } from "../utils/sizes";
+import AddIcon from "../../assets/addIcon.png";
 
 export const Focus = ({ addSubject }) => {
   const [subject, setSubject] = useState(null);
@@ -15,11 +15,9 @@ export const Focus = ({ addSubject }) => {
           label="What would you like to focus on?"
         />
         <View style={styles.button}>
-          <RoundedButton
-            title="+"
-            size={50}
-            onPress={() => addSubject(subject)}
-          />
+          <TouchableOpacity onPress={() => addSubject(subject)}>
+            <Image style={styles.imageIcon} source={AddIcon} />
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -38,5 +36,9 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
     justifyContent: "top",
     flexDirection: "row",
+  },
+  imageIcon: {
+    width: 50,
+    height: 50,
   },
 });

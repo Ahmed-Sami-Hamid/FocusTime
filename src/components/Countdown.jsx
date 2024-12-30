@@ -60,5 +60,6 @@ const styles = StyleSheet.create({
     color: colors.white,
     padding: spacing.lg,
     backgroundColor: "rgba(94, 132, 226, 0.3)",
+    borderRadius: 50,
   },
 });
